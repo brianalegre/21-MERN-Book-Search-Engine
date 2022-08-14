@@ -8,7 +8,7 @@ const resolvers = {
   Query: {
     // SINGLE USER
     users: async () => (user, args) => {
-      return await User.findOne({
+      return User.findOne({
         $or: [
           { _id: user ? user._id : args.id },
           { username: args.username }

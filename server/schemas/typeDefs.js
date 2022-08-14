@@ -16,7 +16,7 @@ const typeDefs = gql`
     bookId: String
     bookImage: String
     bookLink: String
-    bookTitle: string
+    bookTitle: String
   }
 
 
