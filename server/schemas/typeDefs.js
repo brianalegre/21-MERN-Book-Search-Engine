@@ -5,18 +5,17 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    password: String
+    bookCount: Int 
     savedBooks: [Book]!
   }
 
   type Book {
-    _id: ID
-    bookAuthor: String
-    bookDescription: String
     bookId: String
-    bookImage: String
-    bookLink: String
-    bookTitle: String
+    authors: String
+    description: String
+    title: String
+    image: String
+    link: String
   }
 
 
