@@ -58,6 +58,7 @@ const SignupForm = () => {
     //   password: '',
     // });
 
+    // MUTATION
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
