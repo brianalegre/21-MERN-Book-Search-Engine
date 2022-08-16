@@ -20,7 +20,7 @@ const SavedBooks = () => {
 
 
   // use this to determine if `useEffect()` hook needs to run again
-  // const userDataLength = Object.keys(GET_ME).length;
+  // const userDataLength = Object.keys(userData).length;
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -56,6 +56,7 @@ const SavedBooks = () => {
       return false;
     }
 
+    // FROM API.js
     // try {
     //   const response = await deleteBook(bookId, token);
 
@@ -70,6 +71,8 @@ const SavedBooks = () => {
     // } catch (err) {
     //   console.error(err);
     // }
+
+    // REFACTORED API.js TO USE MUTATION
     try {
       // const response = await deleteBook(bookId, token);
       const { data } = await removeBook({

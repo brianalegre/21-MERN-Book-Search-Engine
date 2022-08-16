@@ -72,6 +72,7 @@ const SearchBooks = () => {
       return false;
     }
 
+    // FROM API.js
     // try {
     //   const response = await saveBook(bookToSave, token);
 
@@ -84,6 +85,8 @@ const SearchBooks = () => {
     // } catch (err) {
     //   console.error(err);
     // }
+
+    // REFACTORED API.js TO USE MUTATION
     try {
       // Execute mutation and pass in defined parameter data as variables
       const { data } = await saveBook({
