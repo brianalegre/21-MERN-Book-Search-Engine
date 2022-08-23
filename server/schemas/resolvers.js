@@ -41,18 +41,22 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    // ADD BOOK TO USER
-    // CHANGE PARAMS TO DEFS
-    addBook: async (parent, { userId, bookId }) => {
-      return User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { savedBooks: bookId },
-        },
-        {
-          new: true,
-        }
-      );
+
+    // SAVE BOOK TO USER
+    saveBook: async (parent, { authors, description, bookId, image, title }, context) => {
+      try {
+        if (!context.user) throw new AuthenticationError('You need to be logged in!');
+
+        const { savedBooks } = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedBooks: { authors, description, bookId, image, title } } },
+          { new: true, runValidators: true }
+        );
+        return savedBooks
+      } catch (err) {
+        console.log(err);
+        return err;
+      }
     },
     // REMOVE BOOK FROM 'savedBooks'
     removeBook: async (parent, { userId, bookId }) => {
