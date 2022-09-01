@@ -1,53 +1,70 @@
 import { gql } from '@apollo/client';
 
-// LOGIN USER
+// LOGIN
 export const LOGIN_USER = gql`
-    mutation login($email: String!, $password: String!) {
-        login(email: $email, password: $password) {
-            token
-            user {
-                _id
-                username
-            }
-        }
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
     }
+  }
 `;
 
 // ADD USER
 export const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!) {
-        addUser(username: $username, email: $email, password: $password) {
-        token
-            User {
-                _id
-                username
-                email
-            }
-        }
+  mutation addUser($username: String!, $password: String!, $email: String!) {
+    addUser(username: $username, password: $password, email: $email) {
+      token
+      user {
+        username
+        _id
+        email
+      }
     }
+  }
 `;
 
-// SAVE BOOK MUTATION
+// SAVE BOOK
 export const SAVE_BOOK = gql`
-    mutation saveBook($userId: ID!, $bookId: ID!) {
-        saveBook(userId: $userId, bookId: $bookId) {
-            _id
-            email
-            password
-        }
+  mutation saveBook($input: SavedBookInput) {
+    saveBook(input: $input) {
+      username
+      _id
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        image
+        link
+        title
+        description
+      }
     }
+  }
 `;
 
-// REMOVE BOOK MUTATION
+// REMOVE BOOK
 export const REMOVE_BOOK = gql`
-    mutation removeBook($userId: ID!, $bookId: ID!) {
-        removeBook(userId: $userId, bookId: $bookId) {
-            _id
-            email
-            password
-        }
+  mutation removeBook($bookId: String!) {
+    removeBook(bookId: $bookId) {
+      _id
+      username
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        image
+        link
+        title
+        description
+      }
     }
+  }
 `;
+
 
 
 
